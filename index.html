@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="stylesheet.css">
+    <title>IRCTC</title>
+    <link href="{{url_for('static',filename='css/style (2).css')}}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Tajawal&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Economica&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Philosopher&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    
+    <script>
+      function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        var date=today.getDate();
+        var month=today.getMonth();
+        var montharr=["Jan","Feb","Mar","April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
+        month=montharr[month];
+        var yr=today.getFullYear();
+        var day=today.getDay();
+        var dayarr=["Sun","Mon","Tues","Wed","Thurs","Fri","Sat"];
+        day=dayarr[day];
+
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =
+        h + ":" + m + ":" + s + "  " + date +"-"+day+"-"+month+"-"+yr;
+        var t = setTimeout(startTime, 500);
+      }
+      function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+      }
+      </script>
+  </head>
+<body onload="startTime()">
+    <div id="txt"> </div>
+        <img src="{{url_for('static',filename='css/rail.jpg')}}" id="pic" alt="IRCTC">
+        <div class="rec">
+            <div id="book">BOOK</div>
+            <div id="sub-type">your ticket now.</div>
+           
+            <!--accept detail's-->
+            <form action="#" method="post" action="/">
+                 <input type="text" class="rec1" name="from" placeholder="from*">
+                <input type="text" class="rec2" name="to" placeholder="to*">
+                <input type="datetime-local" class="rec3" name="date" placeholder="date*">
+                <input type="text" class="rec4" name="nop"placeholder="number of passenger*">
+                <input type="submit" class="btn" value="find train" >
+                <input type="button" onclick="location.href='/log-in_'" class="log_in" value="log in">
+            </form>
+            <a href="/sign_up" >create new account</a>
+        </div>
+        <p id="indianrailtxt">INDIAN RAILWAYS</p>
+        <div id="sub-txt">
+            <p id="saftey">saftey</p>
+            <p id="Security">Security</p>
+            <p id="Punctuality">Punctuality</p>
+        </div>
+
+        {% for i in user %}
+        <h1>{{i.tno}}</h1>>
+        {% endfor %}
+</body>
+</html>
